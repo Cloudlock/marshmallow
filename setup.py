@@ -30,7 +30,7 @@ def read(fname):
     return content
 
 setup(
-    name='marshmallow',
+    name='marshmallow2',
     version=__version__,
     description=('A lightweight library for converting complex '
                 'datatypes to and from native Python datatypes.'),
