@@ -8,12 +8,12 @@ from collections import namedtuple
 
 import pytest
 
-from marshmallow import (
+from marshmallow2 import (
     Schema, fields, utils, MarshalResult, UnmarshalResult,
     validates, validates_schema
 )
-from marshmallow.exceptions import ValidationError
-from marshmallow.compat import OrderedDict
+from marshmallow2.exceptions import ValidationError
+from marshmallow2.compat import OrderedDict
 
 from tests.base import *  # noqa
 
@@ -991,7 +991,7 @@ class TestFieldValidation:
         errors = s.validate({'foo': 42})
         assert errors['foo'] == ['err1', 'err2']
 
-    # https://github.com/marshmallow-code/marshmallow/issues/110
+    # https://github.com/marshmallow2-code/marshmallow2/issues/110
     def test_raises_error_with_dict(self):
         def validator(val):
             raise ValidationError({'code': 'invalid_foo'})
@@ -1040,7 +1040,7 @@ class TestNestedSchema:
         for i, name in enumerate(data['collaborators']):
             assert name == blog.collaborators[i].name
 
-    # regression test for https://github.com/marshmallow-code/marshmallow/issues/64
+    # regression test for https://github.com/marshmallow2-code/marshmallow2/issues/64
     def test_nested_many_with_missing_attribute(self, user):
         class SimpleBlogSchema(Schema):
             title = fields.Str()
@@ -1198,7 +1198,7 @@ class TestNestedSchema:
         with pytest.raises(ValueError):
             BadNestedFieldSchema().dump(blog)
 
-    # regression test for https://github.com/marshmallow-code/marshmallow/issues/188
+    # regression test for https://github.com/marshmallow2-code/marshmallow2/issues/188
     def test_invalid_type_passed_to_nested_field(self):
         class InnerSchema(Schema):
             foo = fields.Field()
@@ -1222,7 +1222,7 @@ class TestNestedSchema:
         _, errors = schema.load({'inner': 1})
         assert errors['inner']['_schema'] == ['Invalid input type.']
 
-    # regression test for https://github.com/marshmallow-code/marshmallow/issues/298
+    # regression test for https://github.com/marshmallow2-code/marshmallow2/issues/298
     def test_all_errors_on_many_nested_field_with_validates_decorator(self):
         class Inner(Schema):
             req = fields.Field(required=True)

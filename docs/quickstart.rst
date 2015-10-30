@@ -1,5 +1,5 @@
 .. _quickstart:
-.. module:: marshmallow
+.. module:: marshmallow2
 
 Quickstart
 ==========
@@ -29,7 +29,7 @@ Create a schema by defining a class with variables mapping attribute names to :c
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class UserSchema(Schema):
         name = fields.Str()
@@ -44,11 +44,11 @@ Create a schema by defining a class with variables mapping attribute names to :c
 Serializing Objects ("Dumping")
 -------------------------------
 
-Serialize objects by passing them to your schema's :meth:`dump <marshmallow.Schema.dump>` method, which returns the formatted result (as well as a dictionary of validation errors, which we'll :ref:`revisit later <validation>`).
+Serialize objects by passing them to your schema's :meth:`dump <marshmallow2.Schema.dump>` method, which returns the formatted result (as well as a dictionary of validation errors, which we'll :ref:`revisit later <validation>`).
 
 .. code-block:: python
 
-    from marshmallow import pprint
+    from marshmallow2 import pprint
 
     user = User(name="Monty", email="monty@python.org")
     schema = UserSchema()
@@ -58,7 +58,7 @@ Serialize objects by passing them to your schema's :meth:`dump <marshmallow.Sche
     #  "email": "monty@python.org",
     #  "created_at": "2014-08-17T14:54:16.049594+00:00"}
 
-You can also serialize to a JSON-encoded string using :meth:`dumps <marshmallow.Schema.dumps>`.
+You can also serialize to a JSON-encoded string using :meth:`dumps <marshmallow2.Schema.dumps>`.
 
 .. code-block:: python
 
@@ -108,12 +108,12 @@ Notice that the datetime string was converted to a `datetime` object.
 Deserializing to Objects
 ++++++++++++++++++++++++
 
-In order to deserialize to an object, define a method of your :class:`Schema` and decorate it with `post_load <marshmallow.decorators.post_load>`. The method receives a dictionary of deserialized data as its only parameter.
+In order to deserialize to an object, define a method of your :class:`Schema` and decorate it with `post_load <marshmallow2.decorators.post_load>`. The method receives a dictionary of deserialized data as its only parameter.
 
 .. code-block:: python
     :emphasize-lines: 8-10
 
-    from marshmallow import Schema, fields, post_load
+    from marshmallow2 import Schema, fields, post_load
 
     class UserSchema(Schema):
         name = fields.Str()
@@ -201,7 +201,7 @@ You can perform additional validation for a field by passing it a ``validate`` c
 
     class ValidatedUserSchema(UserSchema):
         # NOTE: This is a contrived example.
-        # You could use marshmallow.validate.Range instead of an anonymous function here
+        # You could use marshmallow2.validate.Range instead of an anonymous function here
         age = fields.Number(validate=lambda n: 18 <= n <= 40)
 
     in_data = {'name': 'Mick', 'email': 'mick@stones.com', 'age': 71}
@@ -209,12 +209,12 @@ You can perform additional validation for a field by passing it a ``validate`` c
     result.errors  # => {'age': ['Validator <lambda>(71.0) is False']}
 
 
-Validation functions either return a boolean or raise a :exc:`ValidationError`. If a :exc:`ValidationError <marshmallow.exceptions.ValidationError>` is raised, its message is stored when validation fails.
+Validation functions either return a boolean or raise a :exc:`ValidationError`. If a :exc:`ValidationError <marshmallow2.exceptions.ValidationError>` is raised, its message is stored when validation fails.
 
 .. code-block:: python
     :emphasize-lines: 7,10,14
 
-    from marshmallow import Schema, fields, ValidationError
+    from marshmallow2 import Schema, fields, ValidationError
 
     def validate_quantity(n):
         if n < 0:
@@ -235,17 +235,17 @@ Validation functions either return a boolean or raise a :exc:`ValidationError`. 
 
 .. note::
 
-    :meth:`Schema.dump` also returns a dictionary of errors, which will include any ``ValidationErrors`` raised during serialization. However, ``required``, ``allow_none``, ``validate``, `@validates <marshmallow.decorators.validates>`, and `@validates_schema <marshmallow.decorators.validates_schema>` only apply during deserialization.
+    :meth:`Schema.dump` also returns a dictionary of errors, which will include any ``ValidationErrors`` raised during serialization. However, ``required``, ``allow_none``, ``validate``, `@validates <marshmallow2.decorators.validates>`, and `@validates_schema <marshmallow2.decorators.validates_schema>` only apply during deserialization.
 
 
 Field Validators as Methods
 +++++++++++++++++++++++++++
 
-It is often convenient to write validators as methods. Use the `validates <marshmallow.decorators.validates>` decorator to register field validator methods.
+It is often convenient to write validators as methods. Use the `validates <marshmallow2.decorators.validates>` decorator to register field validator methods.
 
 .. code-block:: python
 
-    from marshmallow import fields, Schema, validates
+    from marshmallow2 import fields, Schema, validates
 
     class ItemSchema(Schema):
         quantity = fields.Integer()
@@ -261,11 +261,11 @@ It is often convenient to write validators as methods. Use the `validates <marsh
 ``strict`` Mode
 +++++++++++++++
 
-    If you set ``strict=True`` in either the Schema constructor or as a ``class Meta`` option, an error will be raised when invalid data are passed in. You can access the dictionary of validation errors from the `ValidationError.messages <marshmallow.exceptions.ValidationError.messages>` attribute.
+    If you set ``strict=True`` in either the Schema constructor or as a ``class Meta`` option, an error will be raised when invalid data are passed in. You can access the dictionary of validation errors from the `ValidationError.messages <marshmallow2.exceptions.ValidationError.messages>` attribute.
 
     .. code-block:: python
 
-        from marshmallow import ValidationError
+        from marshmallow2 import ValidationError
 
         try:
             UserSchema(strict=True).load({'email': 'foo'})
@@ -403,7 +403,7 @@ Refactoring: Implicit Field Creation
 
 When your model has many attributes, specifying the field type for every attribute can get repetitive, especially when many of the attributes are already native Python datatypes.
 
-The *class Meta* paradigm allows you to specify which attributes you want to serialize. Marshmallow will choose an appropriate field type based on the attribute's type.
+The *class Meta* paradigm allows you to specify which attributes you want to serialize. marshmallow2 will choose an appropriate field type based on the attribute's type.
 
 Let's refactor our User schema to be more concise.
 
@@ -416,7 +416,7 @@ Let's refactor our User schema to be more concise.
         class Meta:
             fields = ("name", "email", "created_at", "uppername")
 
-Note that ``name`` will be automatically formatted as a :class:`String <marshmallow.fields.String>` and ``created_at`` will be formatted as a :class:`DateTime <marshmallow.fields.DateTime>`.
+Note that ``name`` will be automatically formatted as a :class:`String <marshmallow2.fields.String>` and ``created_at`` will be formatted as a :class:`DateTime <marshmallow2.fields.DateTime>`.
 
 .. note::
 
@@ -435,7 +435,7 @@ Note that ``name`` will be automatically formatted as a :class:`String <marshmal
 Ordering Output
 ---------------
 
-For some use cases, it may be useful to maintain field ordering of serialized output. To enable ordering, set the ``ordered`` option to `True`. This will instruct marshmallow to serialize data to a `collections.OrderedDict`.
+For some use cases, it may be useful to maintain field ordering of serialized output. To enable ordering, set the ``ordered`` option to `True`. This will instruct marshmallow2 to serialize data to a `collections.OrderedDict`.
 
 .. code-block:: python
     :emphasize-lines: 7
@@ -452,7 +452,7 @@ For some use cases, it may be useful to maintain field ordering of serialized ou
     schema = UserSchema()
     result = schema.dump(u)
     assert isinstance(result.data, OrderedDict)
-    # marshmallow's pprint function maintains order
+    # marshmallow2's pprint function maintains order
     pprint(result.data, indent=2)
     # {
     #   "name": "Charlie",
@@ -483,4 +483,4 @@ Next Steps
 - Need to represent relationships between objects? See the :ref:`Nesting Schemas <nesting>` page.
 - Want to create your own field type? See the :ref:`Custom Fields <custom_fields>` page.
 - Need to add schema-level validation, post-processing, or error handling behavior? See the :ref:`Extending Schemas <extending>` page.
-- For example applications using marshmallow, check out the :ref:`Examples <examples>` page.
+- For example applications using marshmallow2, check out the :ref:`Examples <examples>` page.

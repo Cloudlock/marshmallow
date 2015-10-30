@@ -94,7 +94,7 @@ Bug fixes:
 Changes from 2.0.0rc2:
 
 - ``error_handler`` and ``accessor`` options are replaced with the ``handle_error`` and ``get_attribute`` methods :issue:`284`.
-- Remove ``marshmallow.compat.plain_function`` since it is no longer used.
+- Remove ``marshmallow2.compat.plain_function`` since it is no longer used.
 - Non-collection values are invalid input for ``List`` field (:issue:`231`). Thanks :user:`density` for reporting.
 - Bug fix: Prevent infinite loop when validating a required, self-nested field. Thanks :user:`Bachmann1234` for the fix.
 
@@ -175,7 +175,7 @@ Features:
 
 Deprecation/Removals:
 
-- Legacy validator functions have been removed (:issue:`73`). Use the class-based validators in ``marshmallow.validate`` instead.
+- Legacy validator functions have been removed (:issue:`73`). Use the class-based validators in ``marshmallow2.validate`` instead.
 
 Bug fixes:
 
@@ -190,8 +190,8 @@ Changes from 2.0.0b3:
 
 Features:
 
-- Add ``marshmallow.validates_schema`` decorator for defining schema-level validators (:issue:`116`).
-- Add ``marshmallow.validates`` decorator for defining field validators as Schema methods (:issue:`116`). Thanks :user:`philtay`.
+- Add ``marshmallow2.validates_schema`` decorator for defining schema-level validators (:issue:`116`).
+- Add ``marshmallow2.validates`` decorator for defining field validators as Schema methods (:issue:`116`). Thanks :user:`philtay`.
 - Performance improvements.
 - Defining ``__marshallable__`` on complex objects is no longer necessary.
 - Add ``fields.Constant``. Thanks :user:`kevinastone`.
@@ -200,7 +200,7 @@ Deprecation/Removals:
 
 - Remove ``skip_missing`` class Meta option. By default, missing inputs are excluded from serialized output (:issue:`211`).
 - Remove optional ``context`` parameter that gets passed to methods for ``Method`` fields.
-- ``Schema.validator`` is deprecated. Use ``marshmallow.validates_schema`` instead.
+- ``Schema.validator`` is deprecated. Use ``marshmallow2.validates_schema`` instead.
 - ``utils.get_func_name`` is removed. Use ``utils.get_callable_name`` instead.
 
 Bug fixes:
@@ -220,7 +220,7 @@ Changes from 2.0.0b2:
 
 - ``Boolean`` field serializes ``None`` to ``None``, for consistency with other fields (:issue:`213`). Thanks :user:`cmanallen` for reporting.
 - Bug fix: ``load_only`` fields do not get validated during serialization.
-- Implicit passing of original, raw data to Schema validators is removed. Use ``@marshmallow.validates_schema(pass_original=True)`` instead.
+- Implicit passing of original, raw data to Schema validators is removed. Use ``@marshmallow2.validates_schema(pass_original=True)`` instead.
 
 2.0.0b2 (2015-05-03)
 ++++++++++++++++++++
@@ -289,7 +289,7 @@ Deprecation/Removals:
 
 Other changes:
 
-- ``Marshaller``, ``Unmarshaller`` were moved to ``marshmallow.marshalling``. These should be considered private API (:issue:`129`).
+- ``Marshaller``, ``Unmarshaller`` were moved to ``marshmallow2.marshalling``. These should be considered private API (:issue:`129`).
 - Make ``allow_null=True`` the default for ``Nested`` fields. This will make ``None`` serialize to ``None`` rather than a dictionary with empty values (:issue:`132`). Thanks :user:`nickrellack` for the suggestion.
 
 1.2.6 (2015-05-03)
@@ -355,7 +355,7 @@ Bug fixes:
 Features:
 
 - Add ``QuerySelect`` and ``QuerySelectList`` fields (:issue:`84`).
-- Convert validators in ``marshmallow.validate`` into class-based callables to make them easier to use when declaring fields (:issue:`85`).
+- Convert validators in ``marshmallow2.validate`` into class-based callables to make them easier to use when declaring fields (:issue:`85`).
 - Add ``Decimal`` field which is safe to use when dealing with precise numbers (:issue:`86`).
 
 Thanks :user:`philtay` for these contributions.
@@ -486,7 +486,7 @@ Major reworking and simplification of the public API, centered around support fo
 * Add ``Serializer.factory`` for creating a factory function that returns a Serializer instance.
 * ``MarshallingError`` stores its underlying exception as an instance variable. This is useful for inspecting errors.
 * ``fields.Select`` is aliased to ``fields.Enum``.
-* Add ``fields.__all__`` and ``marshmallow.__all__`` so that the modules can be more easily extended.
+* Add ``fields.__all__`` and ``marshmallow2.__all__`` so that the modules can be more easily extended.
 * Expose ``Serializer.OPTIONS_CLASS`` as a class variable so that options defaults can be overridden.
 * Add ``Serializer.process_data`` hook that allows subclasses to manipulate the final output data.
 
@@ -524,7 +524,7 @@ Major reworking and simplification of the public API, centered around support fo
 * *Backwards-incompatible*: Rename ``fields.NumberField`` -> ``fields.Number``.
 * Add ``fields.Select``. Thanks :user:`ecarreras`.
 * Support nesting a Serializer within itself by passing ``"self"`` into ``fields.Nested`` (only up to depth=1).
-* *Backwards-incompatible*: No implicit serializing of collections. Must set ``many=True`` if serializing to a list. This ensures that marshmallow handles singular objects correctly, even if they are iterable.
+* *Backwards-incompatible*: No implicit serializing of collections. Must set ``many=True`` if serializing to a list. This ensures that marshmallow2 handles singular objects correctly, even if they are iterable.
 * If Nested field ``only`` parameter is a field name, only return a single value for the nested object (instead of a dict) or a flat list of values.
 * Improved performance and stability.
 
@@ -568,7 +568,7 @@ Major reworking and simplification of the public API, centered around support fo
 * Allow date formats to be changed by passing ``format`` parameter to ``DateTime`` field constructor. Can either be ``"rfc"`` (default), ``"iso"``, or a date format string.
 * More useful error message when declaring fields as classes (instead of an instance, which is the correct usage).
 * Rename MarshallingException -> MarshallingError.
-* Rename marshmallow.core -> marshmallow.serializer.
+* Rename marshmallow2.core -> marshmallow2.serializer.
 
 0.2.1 (2013-11-12)
 ++++++++++++++++++

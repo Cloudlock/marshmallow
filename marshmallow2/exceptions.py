@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Exception classes for marshmallow-related errors."""
+"""Exception classes for marshmallow2-related errors."""
 
-from marshmallow.compat import basestring
+from marshmallow2.compat import basestring
 
-class MarshmallowError(Exception):
-    """Base class for all marshmallow-related errors."""
+class marshmallow2Error(Exception):
+    """Base class for all marshmallow2-related errors."""
     pass
 
 
-class ValidationError(MarshmallowError):
+class ValidationError(marshmallow2Error):
     """Raised when validation fails on a field. Validators and custom fields should
     raise this exception.
 
@@ -38,7 +38,7 @@ class ValidationError(MarshmallowError):
         # Store nested data
         self.data = data
         self.kwargs = kwargs
-        MarshmallowError.__init__(self, message)
+        marshmallow2Error.__init__(self, message)
 
 
 class RegistryError(NameError):

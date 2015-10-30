@@ -1,9 +1,9 @@
-**marshmallow** is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.
+**marshmallow2** is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.
 
 .. code-block:: python
 
     from datetime import date
-    from marshmallow import Schema, fields, pprint
+    from marshmallow2 import Schema, fields, pprint
 
     class ArtistSchema(Schema):
         name = fields.Str()
@@ -23,7 +23,7 @@
     #   'release_date': '1971-12-17',
     #   'title': 'Hunky Dory'}
 
-In short, marshmallow schemas can be used to:
+In short, marshmallow2 schemas can be used to:
 
 - **Validate** input data.
 - **Deserialize** input data to app-level objects.
@@ -35,7 +35,7 @@ Get It Now
 
 .. code-block:: bash
 
-    $ pip install -U marshmallow
+    $ pip install -U marshmallow2
 
 
 Ready to get started? Go on to the :ref:`Quickstart tutorial <quickstart>` or check out some :ref:`Examples <examples>`.

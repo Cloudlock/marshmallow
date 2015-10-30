@@ -1,23 +1,23 @@
 ********************************************
-marshmallow: simplified object serialization
+marshmallow2: simplified object serialization
 ********************************************
 
-.. image:: https://badge.fury.io/py/marshmallow.png
-    :target: http://badge.fury.io/py/marshmallow
+.. image:: https://badge.fury.io/py/marshmallow2.png
+    :target: http://badge.fury.io/py/marshmallow2
     :alt: Latest version
 
-.. image:: https://travis-ci.org/marshmallow-code/marshmallow.png?branch=pypi
-    :target: https://travis-ci.org/marshmallow-code/marshmallow
+.. image:: https://travis-ci.org/marshmallow2-code/marshmallow2.png?branch=pypi
+    :target: https://travis-ci.org/marshmallow2-code/marshmallow2
     :alt: Travis-CI
 
-Homepage: http://marshmallow.readthedocs.org/
+Homepage: http://marshmallow2.readthedocs.org/
 
-**marshmallow** is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.
+**marshmallow2** is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes.
 
 .. code-block:: python
 
     from datetime import date
-    from marshmallow import Schema, fields, pprint
+    from marshmallow2 import Schema, fields, pprint
 
     class ArtistSchema(Schema):
         name = fields.Str()
@@ -38,7 +38,7 @@ Homepage: http://marshmallow.readthedocs.org/
     #   'title': 'Hunky Dory'}
 
 
-In short, marshmallow schemas can be used to:
+In short, marshmallow2 schemas can be used to:
 
 - **Validate** input data.
 - **Deserialize** input data to app-level objects.
@@ -49,31 +49,31 @@ Get It Now
 
 ::
 
-    $ pip install -U marshmallow
+    $ pip install -U marshmallow2
 
 
 Documentation
 =============
 
-Full documentation is available at http://marshmallow.readthedocs.org/ .
+Full documentation is available at http://marshmallow2.readthedocs.org/ .
 
 Requirements
 ============
 
 - Python >= 2.6 or >= 3.3
 
-marshmallow has no external dependencies outside of the Python standard library, although `python-dateutil <https://pypi.python.org/pypi/python-dateutil>`_ is recommended for robust datetime deserialization.
+marshmallow2 has no external dependencies outside of the Python standard library, although `python-dateutil <https://pypi.python.org/pypi/python-dateutil>`_ is recommended for robust datetime deserialization.
 
 Project Links
 =============
 
-- Docs: http://marshmallow.readthedocs.org/
-- Changelog: http://marshmallow.readthedocs.org/en/latest/changelog.html
-- PyPI: https://pypi.python.org/pypi/marshmallow
-- Issues: https://github.com/marshmallow-code/marshmallow/issues
+- Docs: http://marshmallow2.readthedocs.org/
+- Changelog: http://marshmallow2.readthedocs.org/en/latest/changelog.html
+- PyPI: https://pypi.python.org/pypi/marshmallow2
+- Issues: https://github.com/marshmallow2-code/marshmallow2/issues
 
 
 License
 =======
 
-MIT licensed. See the bundled `LICENSE <https://github.com/marshmallow-code/marshmallow/blob/pypi/LICENSE>`_ file for more details.
+MIT licensed. See the bundled `LICENSE <https://github.com/marshmallow2-code/marshmallow2/blob/pypi/LICENSE>`_ file for more details.

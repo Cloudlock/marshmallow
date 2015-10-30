@@ -3,7 +3,7 @@
 Installation
 ============
 
-**marshmallow** requires Python >= 2.6 or >= 3.3. It has no external dependencies other than the Python standard library.
+**marshmallow2** requires Python >= 2.6 or >= 3.3. It has no external dependencies other than the Python standard library.
 
 .. note::
 
@@ -20,29 +20,29 @@ To install the latest stable version from the PyPI:
 
 ::
 
-    $ pip install -U marshmallow
+    $ pip install -U marshmallow2
 
 To install the latest pre-release version from the PyPI:
 
 ::
 
-    $ pip install -U marshmallow --pre
+    $ pip install -U marshmallow2 --pre
 
 
-To install marshmallow with the recommended soft dependencies:
+To install marshmallow2 with the recommended soft dependencies:
 
 ::
 
-    $ pip install -U marshmallow[reco]
+    $ pip install -U marshmallow2[reco]
 
 Get the Bleeding Edge Version
 -----------------------------
 
-To get the latest development version of marshmallow, run
+To get the latest development version of marshmallow2, run
 
 ::
 
-    $ pip install -U git+https://github.com/marshmallow-code/marshmallow.git@dev
+    $ pip install -U git+https://github.com/marshmallow2-code/marshmallow2.git@dev
 
 
 .. seealso::

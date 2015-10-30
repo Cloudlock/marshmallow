@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Utility methods for marshmallow."""
+"""Utility methods for marshmallow2."""
 from __future__ import absolute_import, unicode_literals
 
 import collections
@@ -14,7 +14,7 @@ from decimal import Decimal, ROUND_HALF_EVEN, Context, Inexact
 from email.utils import formatdate, parsedate
 from pprint import pprint as py_pprint
 
-from marshmallow.compat import OrderedDict, binary_type, text_type
+from marshmallow2.compat import OrderedDict, binary_type, text_type
 
 
 dateutil_available = False
@@ -32,7 +32,7 @@ class _Missing(object):
     __nonzero__ = __bool__  # PY2 compat
 
     def __repr__(self):
-        return '<marshmallow.missing>'
+        return '<marshmallow2.missing>'
 
 
 # Singleton value that indicates that a field's value is missing from input
@@ -125,7 +125,7 @@ def to_marshallable_type(obj, field_names=None):
 def pprint(obj, *args, **kwargs):
     """Pretty-printing function that can pretty-print OrderedDicts
     like regular dictionaries. Useful for printing the output of
-    :meth:`marshmallow.Schema.dump`.
+    :meth:`marshmallow2.Schema.dump`.
     """
     if isinstance(obj, OrderedDict):
         print(json.dumps(obj, *args, **kwargs))

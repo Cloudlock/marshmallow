@@ -4,64 +4,64 @@
 API Reference
 *************
 
-.. module:: marshmallow
+.. module:: marshmallow2
 
 Schema
 ======
 
 
-.. autoclass:: marshmallow.Schema
+.. autoclass:: marshmallow2.Schema
     :inherited-members:
 
-.. autoclass:: marshmallow.SchemaOpts
+.. autoclass:: marshmallow2.SchemaOpts
 
-.. autoclass:: marshmallow.MarshalResult
-.. autoclass:: marshmallow.UnmarshalResult
+.. autoclass:: marshmallow2.MarshalResult
+.. autoclass:: marshmallow2.UnmarshalResult
 
-.. autofunction:: marshmallow.pprint
+.. autofunction:: marshmallow2.pprint
 
 .. _api_fields:
 
 Fields
 ======
 
-.. automodule:: marshmallow.fields
+.. automodule:: marshmallow2.fields
     :members:
     :private-members:
 
 Decorators
 ==========
 
-.. automodule:: marshmallow.decorators
+.. automodule:: marshmallow2.decorators
     :members:
 
 Validators
 ==========
 
-.. automodule:: marshmallow.validate
+.. automodule:: marshmallow2.validate
     :members:
 
 Utility Functions
 =================
 
-.. automodule:: marshmallow.utils
+.. automodule:: marshmallow2.utils
     :members:
 
 Marshalling
 ===========
 
-.. automodule:: marshmallow.marshalling
+.. automodule:: marshmallow2.marshalling
     :members:
     :private-members:
 
 Class Registry
 ==============
 
-.. automodule:: marshmallow.class_registry
+.. automodule:: marshmallow2.class_registry
     :members:
 
 Exceptions
 ==========
 
-.. automodule:: marshmallow.exceptions
+.. automodule:: marshmallow2.exceptions
     :members:

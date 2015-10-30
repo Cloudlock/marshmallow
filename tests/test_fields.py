@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from marshmallow import fields, Schema, ValidationError
-from marshmallow.marshalling import missing
+from marshmallow2 import fields, Schema, ValidationError
+from marshmallow2.marshalling import missing
 
 from tests.base import ALL_FIELDS, User
 

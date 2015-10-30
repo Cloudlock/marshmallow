@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from marshmallow.exceptions import ValidationError
+from marshmallow2.exceptions import ValidationError
 
 
 class TestValidationError:

@@ -14,12 +14,12 @@ import warnings
 from collections import namedtuple
 import functools
 
-from marshmallow import base, fields, utils, class_registry, marshalling
-from marshmallow.compat import (with_metaclass, iteritems, text_type,
+from marshmallow2 import base, fields, utils, class_registry, marshalling
+from marshmallow2.compat import (with_metaclass, iteritems, text_type,
                                 binary_type, OrderedDict)
-from marshmallow.exceptions import ValidationError
-from marshmallow.orderedset import OrderedSet
-from marshmallow.decorators import (PRE_DUMP, POST_DUMP, PRE_LOAD, POST_LOAD,
+from marshmallow2.exceptions import ValidationError
+from marshmallow2.orderedset import OrderedSet
+from marshmallow2.decorators import (PRE_DUMP, POST_DUMP, PRE_LOAD, POST_LOAD,
                                     VALIDATES, VALIDATES_SCHEMA)
 
 
@@ -164,7 +164,7 @@ class SchemaMeta(type):
                 continue
 
             try:
-                processor_tags = attr.__marshmallow_tags__
+                processor_tags = attr.__marshmallow2_tags__
             except AttributeError:
                 continue
 
@@ -214,7 +214,7 @@ class BaseSchema(base.SchemaABC):
     .. code-block:: python
 
         import datetime as dt
-        from marshmallow import Schema, fields
+        from marshmallow2 import Schema, fields
 
         class Album(object):
             def __init__(self, title, release_date):
@@ -255,8 +255,8 @@ class BaseSchema(base.SchemaABC):
 
     .. versionchanged:: 2.0.0
         `__validators__`, `__preprocessors__`, and `__data_handlers__` are removed in favor of
-        `marshmallow.decorators.validates_schema`,
-        `marshmallow.decorators.pre_load` and `marshmallow.decorators.post_dump`.
+        `marshmallow2.decorators.validates_schema`,
+        `marshmallow2.decorators.pre_load` and `marshmallow2.decorators.post_dump`.
         `__accessor__` and `__error_handler__` are deprecated. Implement the
         `handle_error` and `get_attribute` methods instead.
         """
@@ -760,7 +760,7 @@ class BaseSchema(base.SchemaABC):
     def _invoke_field_validators(self, data, many):
         for attr_name in self.__processors__[(VALIDATES, False)]:
             validator = getattr(self, attr_name)
-            validator_kwargs = validator.__marshmallow_kwargs__[(VALIDATES, False)]
+            validator_kwargs = validator.__marshmallow2_kwargs__[(VALIDATES, False)]
             field_name = validator_kwargs['field_name']
 
             try:
@@ -799,7 +799,7 @@ class BaseSchema(base.SchemaABC):
         errors = {}
         for attr_name in self.__processors__[(VALIDATES_SCHEMA, pass_many)]:
             validator = getattr(self, attr_name)
-            validator_kwargs = validator.__marshmallow_kwargs__[(VALIDATES_SCHEMA, pass_many)]
+            validator_kwargs = validator.__marshmallow2_kwargs__[(VALIDATES_SCHEMA, pass_many)]
             pass_original = validator_kwargs.get('pass_original', False)
             if pass_many:
                 validator = functools.partial(validator, many=many)
@@ -827,7 +827,7 @@ class BaseSchema(base.SchemaABC):
             # This will be a bound method.
             processor = getattr(self, attr_name)
 
-            processor_kwargs = processor.__marshmallow_kwargs__[(tag_name, pass_many)]
+            processor_kwargs = processor.__marshmallow2_kwargs__[(tag_name, pass_many)]
             pass_original = processor_kwargs.get('pass_original', False)
 
             if pass_many:

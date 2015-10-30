@@ -1,5 +1,5 @@
 .. _extending:
-.. module:: marshmallow
+.. module:: marshmallow2
 
 Extending Schemas
 =================
@@ -7,13 +7,13 @@ Extending Schemas
 Pre-processing and Post-processing Methods
 ------------------------------------------
 
-Data pre-processing and post-processing methods can be registered using the `pre_load <marshmallow.decorators.pre_load>`, `post_load <marshmallow.decorators.post_load>`, `pre_dump <marshmallow.decorators.pre_dump>`, and `post_dump <marshmallow.decorators.post_dump>` decorators.
+Data pre-processing and post-processing methods can be registered using the `pre_load <marshmallow2.decorators.pre_load>`, `post_load <marshmallow2.decorators.post_load>`, `pre_dump <marshmallow2.decorators.pre_dump>`, and `post_dump <marshmallow2.decorators.post_dump>` decorators.
 
 
 .. code-block:: python
     :emphasize-lines: 7
 
-    from marshmallow import Schema, fields, pre_load
+    from marshmallow2 import Schema, fields, pre_load
 
     class UserSchema(Schema):
         name = fields.Str()
@@ -45,7 +45,7 @@ One common use case is to wrap data in a namespace upon serialization and unwrap
 .. code-block:: python
     :emphasize-lines: 17,18,22,23,27,28
 
-    from marshmallow import Schema, fields, pre_load, post_load, post_dump
+    from marshmallow2 import Schema, fields, pre_load, post_load, post_dump
 
     class BaseSchema(Schema):
         # Custom options
@@ -127,7 +127,7 @@ The pipeline for serialization is similar, except that the "pass_many" processor
 
     .. code-block:: python
 
-        from marshmallow import Schema, fields, pre_load
+        from marshmallow2 import Schema, fields, pre_load
 
         # YES
         class MySchema(Schema):
@@ -165,13 +165,13 @@ Handling Errors
 
 By default, :meth:`Schema.dump` and :meth:`Schema.load` will return validation errors as a dictionary (unless ``strict`` mode is enabled).
 
-You can specify a custom error-handling function for a :class:`Schema` by overriding the `handle_error <marshmallow.Schema.handle_error>`  method. The method receives the `ValidationError <marshmallow.exceptions.ValidationError>` and the original object (or input data if deserializing) to be (de)serialized.
+You can specify a custom error-handling function for a :class:`Schema` by overriding the `handle_error <marshmallow2.Schema.handle_error>`  method. The method receives the `ValidationError <marshmallow2.exceptions.ValidationError>` and the original object (or input data if deserializing) to be (de)serialized.
 
 .. code-block:: python
     :emphasize-lines: 10-13
 
     import logging
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class AppError(Exception):
         pass
@@ -193,12 +193,12 @@ You can specify a custom error-handling function for a :class:`Schema` by overri
 Schema-level Validation
 -----------------------
 
-You can register schema-level validation functions for a :class:`Schema` using the :meth:`marshmallow.validates_schema <marshmallow.decorators.validates_schema>` decorator. Schema-level validation errors will be stored on the ``_schema`` key of the errors dictonary.
+You can register schema-level validation functions for a :class:`Schema` using the :meth:`marshmallow2.validates_schema <marshmallow2.decorators.validates_schema>` decorator. Schema-level validation errors will be stored on the ``_schema`` key of the errors dictonary.
 
 .. code-block:: python
     :emphasize-lines: 7
 
-    from marshmallow import Schema, fields, validates_schema, ValidationError
+    from marshmallow2 import Schema, fields, validates_schema, ValidationError
 
     class NumberSchema(Schema):
         field_a = fields.Integer()
@@ -217,7 +217,7 @@ You can register schema-level validation functions for a :class:`Schema` using t
 Validating Original Input Data
 ++++++++++++++++++++++++++++++
 
-Normally, unspecified field names are ignored by the validator. If you would like access to the original, raw input (e.g. to fail validation if an unknown field name is sent), add ``pass_original=True`` to your call to `validates_schema <marshmallow.decorators.validates_schema>`.
+Normally, unspecified field names are ignored by the validator. If you would like access to the original, raw input (e.g. to fail validation if an unknown field name is sent), add ``pass_original=True`` to your call to `validates_schema <marshmallow2.decorators.validates_schema>`.
 
 .. code-block:: python
     :emphasize-lines: 5
@@ -240,7 +240,7 @@ Normally, unspecified field names are ignored by the validator. If you would lik
 Storing Errors on Specific Fields
 +++++++++++++++++++++++++++++++++
 
-If you want to store schema-level validation errors on a specific field, you can pass a field name (or multiple field names) to the :exc:`ValidationError <marshmallow.exceptions.ValidationError>`.
+If you want to store schema-level validation errors on a specific field, you can pass a field name (or multiple field names) to the :exc:`ValidationError <marshmallow2.exceptions.ValidationError>`.
 
 .. code-block:: python
     :emphasize-lines: 10
@@ -264,9 +264,9 @@ If you want to store schema-level validation errors on a specific field, you can
 Overriding how attributes are accessed
 --------------------------------------
 
-By default, marshmallow uses the `utils.get_value` function to pull attributes from various types of objects for serialization. This will work for *most* use cases.
+By default, marshmallow2 uses the `utils.get_value` function to pull attributes from various types of objects for serialization. This will work for *most* use cases.
 
-However, if you want to specify how values are accessed from an object, you can override the :meth:`get_attribute <marshmallow.Schema.get_attribute>` method.
+However, if you want to specify how values are accessed from an object, you can override the :meth:`get_attribute <marshmallow2.Schema.get_attribute>` method.
 
 .. code-block:: python
     :emphasize-lines: 7-8
@@ -316,7 +316,7 @@ First, we'll add our namespace configuration to a custom options class.
 .. code-block:: python
     :emphasize-lines: 3
 
-    from marshmallow import Schema, SchemaOpts
+    from marshmallow2 import Schema, SchemaOpts
 
     class NamespaceOpts(SchemaOpts):
         """Same as the default class Meta options, but adds "name" and

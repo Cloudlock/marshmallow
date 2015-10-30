@@ -18,7 +18,7 @@ In 2.0, validation/deserialization of `None` is consistent across field types. I
 
 .. code-block:: python
 
-    from marshmallow import fields
+    from marshmallow2 import fields
 
     # In 1.0, deserialization of None was inconsistent
     fields.Int().deserialize(None)  # 0
@@ -37,14 +37,14 @@ In 2.0, validation/deserialization of `None` is consistent across field types. I
 Default Values
 **************
 
-Before version 2.0, certain fields (including `String <marshmallow.fields.String>`, `List <marshmallow.fields.List>`, `Nested <marshmallow.fields.Nested>`, and number fields) had implicit default values that would be used if their corresponding input value was `None` or missing.
+Before version 2.0, certain fields (including `String <marshmallow2.fields.String>`, `List <marshmallow2.fields.List>`, `Nested <marshmallow2.fields.Nested>`, and number fields) had implicit default values that would be used if their corresponding input value was `None` or missing.
 
 
-In 2.0, these implicit defaults are removed.  A `Field's <marshmallow.fields.Field>` ``default`` parameter is only used if you explicitly set it. Otherwise, missing inputs will be excluded from the serialized output.
+In 2.0, these implicit defaults are removed.  A `Field's <marshmallow2.fields.Field>` ``default`` parameter is only used if you explicitly set it. Otherwise, missing inputs will be excluded from the serialized output.
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class MySchema(Schema):
         str_no_default = fields.Str()
@@ -84,13 +84,13 @@ As a consequence of this new behavior, the ``skip_missing`` class Meta option ha
 Pre-processing and Post-processing Methods
 ******************************************
 
-The pre- and post-processing API was significantly improved for better consistency and flexibility. The `pre_load <marshmallow.decorators.pre_load>`, `post_load <marshmallow.decorators.post_load>`, `pre_dump <marshmallow.decorators.pre_dump>`, and `post_dump <marshmallow.decorators.post_dump>` should be used to define processing hooks. `Schema.preprocessor` and `Schema.data_handler` are removed.
+The pre- and post-processing API was significantly improved for better consistency and flexibility. The `pre_load <marshmallow2.decorators.pre_load>`, `post_load <marshmallow2.decorators.post_load>`, `pre_dump <marshmallow2.decorators.pre_dump>`, and `post_dump <marshmallow2.decorators.post_dump>` should be used to define processing hooks. `Schema.preprocessor` and `Schema.data_handler` are removed.
 
 
 .. code-block:: python
 
     # 1.0 API
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class ExampleSchema(Schema):
         field_a = fields.Int()
@@ -107,7 +107,7 @@ The pre- and post-processing API was significantly improved for better consisten
 
 
     # 2.0 API
-    from marshmallow import Schema, fields, pre_load, post_dump
+    from marshmallow2 import Schema, fields, pre_load, post_dump
 
     class ExampleSchema(Schema):
         field_a = fields.Int()
@@ -127,12 +127,12 @@ See the :ref:`Extending Schemas <extending>` page for more information on the ``
 Schema Validators
 *****************
 
-Similar to pre-processing and post-processing methods, schema validators are now defined as methods. Decorate schema validators with `validates_schema <marshmallow.decorators.validates_schema>`. `Schema.validator` is removed.
+Similar to pre-processing and post-processing methods, schema validators are now defined as methods. Decorate schema validators with `validates_schema <marshmallow2.decorators.validates_schema>`. `Schema.validator` is removed.
 
 .. code-block:: python
 
     # 1.0 API
-    from marshmallow import Schema, fields, ValidationError
+    from marshmallow2 import Schema, fields, ValidationError
 
     class MySchema(Schema):
         field_a = fields.Int(required=True)
@@ -144,7 +144,7 @@ Similar to pre-processing and post-processing methods, schema validators are now
             raise ValidationError('field_a must be greater than field_b')
 
     # 2.0 API
-    from marshmallow import Schema, fields, validates_schema, ValidationError
+    from marshmallow2 import Schema, fields, validates_schema, ValidationError
 
     class MySchema(Schema):
         field_a = fields.Int(required=True)
@@ -162,7 +162,7 @@ Custom accessors and error handlers are now defined as methods. `Schema.accessor
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     # 1.0 Deprecated API
     class ExampleSchema(Schema):
@@ -187,15 +187,15 @@ Custom accessors and error handlers are now defined as methods. `Schema.accessor
         def handle_error(self, exc, data):
             raise CustomError('Something bad happened', messages=exc.messages)
 
-Use `post_load <marshmallow.decorators.post_load>` instead of `make_object`
+Use `post_load <marshmallow2.decorators.post_load>` instead of `make_object`
 ***************************************************************************
 
-The `make_object` method was deprecated from the `Schema <marshmallow.Schema>` API (see :issue:`277` for the rationale). In order to deserialize to an object, use a `post_load <marshmallow.decorators.post_load>` method.
+The `make_object` method was deprecated from the `Schema <marshmallow2.Schema>` API (see :issue:`277` for the rationale). In order to deserialize to an object, use a `post_load <marshmallow2.decorators.post_load>` method.
 
 .. code-block:: python
 
     # 1.0
-    from marshmallow import Schema, fields, post_load
+    from marshmallow2 import Schema, fields, post_load
 
     class UserSchema(Schema):
         name = fields.Str()
@@ -205,7 +205,7 @@ The `make_object` method was deprecated from the `Schema <marshmallow.Schema>` A
             return User(**data)
 
     # 2.0
-    from marshmallow import Schema, fields, post_load
+    from marshmallow2 import Schema, fields, post_load
 
     class UserSchema(Schema):
         name = fields.Str()
@@ -222,7 +222,7 @@ When validating a collection (i.e. when calling ``load`` or ``dump`` with ``many
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class BandMemberSchema(Schema):
         name = fields.String(required=True)
@@ -252,7 +252,7 @@ You can still get the pre-2.0 behavior by setting ``index_errors = False`` in a 
 Use ``ValidationError`` instead of ``MarshallingError`` and ``UnmarshallingError``
 **********************************************************************************
 
-The :exc:`MarshallingError` and :exc:`UnmarshallingError` exceptions are deprecated in favor of a single :exc:`ValidationError <marshmallow.exceptions.ValidationError>`. Users who have written custom fields or are using ``strict`` mode will need to change their code accordingly.
+The :exc:`MarshallingError` and :exc:`UnmarshallingError` exceptions are deprecated in favor of a single :exc:`ValidationError <marshmallow2.exceptions.ValidationError>`. Users who have written custom fields or are using ``strict`` mode will need to change their code accordingly.
 
 Handle ``ValidationError`` in strict mode
 -----------------------------------------
@@ -262,7 +262,7 @@ When using `strict` mode, you should handle `ValidationErrors` when calling `Sch
 .. code-block:: python
     :emphasize-lines: 3,14
 
-    from marshmallow import exceptions as exc
+    from marshmallow2 import exceptions as exc
 
     schema = BandMemberSchema(strict=True)
 
@@ -304,13 +304,13 @@ Custom Fields
 
 Two changes must be made to make your custom fields compatible with version 2.0.
 
-- The `_deserialize <marshmallow.fields.Field._deserialize>` method of custom fields now receives ``attr`` (the key corresponding to the value to be deserialized) and the raw input ``data`` as arguments.
-- Custom fields should raise :exc:`ValidationError <marshmallow.exceptions.ValidationError>` in their `_deserialize` and `_serialize` methods when a validation error occurs.
+- The `_deserialize <marshmallow2.fields.Field._deserialize>` method of custom fields now receives ``attr`` (the key corresponding to the value to be deserialized) and the raw input ``data`` as arguments.
+- Custom fields should raise :exc:`ValidationError <marshmallow2.exceptions.ValidationError>` in their `_deserialize` and `_serialize` methods when a validation error occurs.
 
 .. code-block:: python
 
-    from marshmallow import fields, ValidationError
-    from marshmallow.exceptions import UnmarshallingError
+    from marshmallow2 import fields, ValidationError
+    from marshmallow2.exceptions import UnmarshallingError
 
     # In 1.0, an UnmarshallingError was raised
     class PasswordField(fields.Field):
@@ -330,7 +330,7 @@ Two changes must be made to make your custom fields compatible with version 2.0.
             return val
 
 
-To make a field compatible with both marshmallow 1.x and 2.x, you can pass `*args` and `**kwargs` to the signature.
+To make a field compatible with both marshmallow2 1.x and 2.x, you can pass `*args` and `**kwargs` to the signature.
 
 .. code-block:: python
 
@@ -381,8 +381,8 @@ The `fields.Select` field is deprecated in favor of the newly-added `OneOf` vali
 
 .. code-block:: python
 
-    from marshmallow import fields
-    from marshmallow.validate import OneOf
+    from marshmallow2 import fields
+    from marshmallow2.validate import OneOf
 
     # 1.0
     fields.Select(['red', 'blue'])
@@ -412,7 +412,7 @@ The default error messages for many fields and validators have been changed for 
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields, validate
+    from marshmallow2 import Schema, fields, validate
 
     class ValidatingSchema(Schema):
         foo = fields.Str()
@@ -466,15 +466,15 @@ Validators were rewritten as class-based callables, making them easier to use wh
 
 .. code-block:: python
 
-    from marshmallow import fields
+    from marshmallow2 import fields
 
     # 1.2
-    from marshmallow.validate import Range
+    from marshmallow2.validate import Range
 
     age = fields.Int(validate=[Range(min=0, max=999)])
 
     # Pre-1.2
-    from marshmallow.validate import ranging
+    from marshmallow2.validate import ranging
 
     age = fields.Int(validate=[lambda val: ranging(val, min=0, max=999)])
 
@@ -489,7 +489,7 @@ In version 1.2, deserialization of the empty string (``''``) with `DateTime`, `D
 
 .. code-block:: python
 
-    from marshmallow import fields
+    from marshmallow2 import fields
 
     fields.Date().deserialize('')
     # UnmarshallingError: Could not deserialize '' to a date object.
@@ -504,13 +504,13 @@ The `Decimal` field was added to support serialization/deserialization of `decim
 Upgrading to 1.0
 ++++++++++++++++
 
-Version 1.0 marks the first major release of marshmallow. Many big changes were made from the pre-1.0 releases in order to provide a cleaner API, support object deserialization, and improve field validation.
+Version 1.0 marks the first major release of marshmallow2. Many big changes were made from the pre-1.0 releases in order to provide a cleaner API, support object deserialization, and improve field validation.
 
 Perhaps the largest change is in how objects get serialized. Serialization occurs by invoking the :meth:`Schema.dump` method rather than passing the object to the constructor.  Because only configuration options (e.g. the ``many``, ``strict``, and ``only`` parameters) are passed to the constructor, you can more easily reuse serializer instances.  The :meth:`dump <Schema.dump>` method also forms a nice symmetry with the :meth:`Schema.load` method, which is used for deserialization.
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class UserSchema(Schema):
         email = fields.Email()
@@ -539,7 +539,7 @@ The Fields interface was also reworked in 1.0 to make it easier to define custom
 
 .. code-block:: python
 
-    from marshmallow import fields, MarshallingError
+    from marshmallow2 import fields, MarshallingError
 
     class PasswordField(fields.Field):
         def _serialize(self, value, attr, obj):
@@ -554,7 +554,7 @@ Another major change in 1.0 is that multiple validation errors can be stored for
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields, ValidationError
+    from marshmallow2 import Schema, fields, ValidationError
 
     def must_have_number(val):
         if not any(ch.isdigit() for ch in val):
@@ -575,7 +575,7 @@ Another major change in 1.0 is that multiple validation errors can be stored for
 Other notable changes:
 
 - Serialized output is no longer an `OrderedDict` by default. You must explicitly set the `ordered` class Meta option to `True` .
-- :class:`Serializer` has been renamed to :class:`Schema`, but you can still import `marshmallow.Serializer` (which is aliased to :class:`Schema`).
+- :class:`Serializer` has been renamed to :class:`Schema`, but you can still import `marshmallow2.Serializer` (which is aliased to :class:`Schema`).
 - ``datetime`` objects serialize to ISO8601-formatted strings by default (instead of RFC821 format).
 - The ``fields.validated`` decorator was removed, as it is no longer necessary given the new Fields interface.
 - `Schema.factory` class method was removed.

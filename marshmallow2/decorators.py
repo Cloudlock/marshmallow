@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """Decorators for registering schema pre-processing and post-processing methods.
-These should be imported from the top-level `marshmallow` module.
+These should be imported from the top-level `marshmallow2` module.
 
 Example: ::
 
-    from marshmallow import (
+    from marshmallow2 import (
         Schema, pre_load, pre_dump, post_load, validates_schema,
         validates, fields, ValidationError
     )
@@ -142,19 +142,19 @@ def tag_processor(tag_name, fn, pass_many, **kwargs):
             tag_processor, tag_name, pass_many=pass_many, **kwargs
         )
 
-    # Set a marshmallow_tags attribute instead of wrapping in some class,
+    # Set a marshmallow2_tags attribute instead of wrapping in some class,
     # because I still want this to end up as a normal (unbound) method.
     try:
-        marshmallow_tags = fn.__marshmallow_tags__
+        marshmallow2_tags = fn.__marshmallow2_tags__
     except AttributeError:
-        fn.__marshmallow_tags__ = marshmallow_tags = set()
+        fn.__marshmallow2_tags__ = marshmallow2_tags = set()
     # Also save the kwargs for the tagged function on
-    # __marshmallow_kwargs__, keyed by (<tag_name>, <pass_many>)
+    # __marshmallow2_kwargs__, keyed by (<tag_name>, <pass_many>)
     try:
-        marshmallow_kwargs = fn.__marshmallow_kwargs__
+        marshmallow2_kwargs = fn.__marshmallow2_kwargs__
     except AttributeError:
-        fn.__marshmallow_kwargs__ = marshmallow_kwargs = {}
-    marshmallow_tags.add((tag_name, pass_many))
-    marshmallow_kwargs[(tag_name, pass_many)] = kwargs
+        fn.__marshmallow2_kwargs__ = marshmallow2_kwargs = {}
+    marshmallow2_tags.add((tag_name, pass_many))
+    marshmallow2_kwargs[(tag_name, pass_many)] = kwargs
 
     return fn

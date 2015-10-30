@@ -6,8 +6,8 @@ from __future__ import unicode_literals
 import re
 from operator import attrgetter
 
-from marshmallow.compat import basestring, text_type, zip_longest
-from marshmallow.exceptions import ValidationError
+from marshmallow2.compat import basestring, text_type, zip_longest
+from marshmallow2.exceptions import ValidationError
 
 
 class Validator(object):

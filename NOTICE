@@ -1,4 +1,4 @@
-marshmallow includes code adapted from other Python libraries, including Flask-RESTful, Django, pytz, and six.
+marshmallow2 includes code adapted from other Python libraries, including Flask-RESTful, Django, pytz, and six.
 
 Flask-RESTful License
 =====================

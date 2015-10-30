@@ -21,7 +21,7 @@ def find_version(fname):
         raise RuntimeError('Cannot find version information')
     return version
 
-__version__ = find_version("marshmallow/__init__.py")
+__version__ = find_version("marshmallow2/__init__.py")
 
 
 def read(fname):
@@ -30,16 +30,16 @@ def read(fname):
     return content
 
 setup(
-    name='marshmallow2',
+    name='marshmallow22',
     version=__version__,
     description=('A lightweight library for converting complex '
                 'datatypes to and from native Python datatypes.'),
     long_description=read('README.rst'),
     author='Steven Loria',
     author_email='sloria1@gmail.com',
-    url='https://github.com/marshmallow-code/marshmallow',
+    url='https://github.com/marshmallow2-code/marshmallow2',
     packages=find_packages(exclude=('test*', 'examples')),
-    package_dir={'marshmallow': 'marshmallow'},
+    package_dir={'marshmallow2': 'marshmallow2'},
     include_package_data=True,
     extras_require={'reco': EXTRA_REQUIREMENTS},
     license=read('LICENSE'),

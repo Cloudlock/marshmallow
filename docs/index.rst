@@ -1,7 +1,7 @@
-.. marshmallow documentation master file
+.. marshmallow2 documentation master file
 
 ********************************************
-marshmallow: simplified object serialization
+marshmallow2: simplified object serialization
 ********************************************
 
 Release v\ |version|. (:ref:`Changelog <changelog>`)
@@ -16,7 +16,7 @@ See the :ref:`Upgrading to Newer Releases <upgrading>` page for notes on getting
 Why another library?
 =====================
 
-See :ref:`this document <why>` to learn about what makes marshmallow unique.
+See :ref:`this document <why>` to learn about what makes marshmallow2 unique.
 
 
 Guide

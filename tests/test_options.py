@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from marshmallow import fields, Schema
-from marshmallow.exceptions import ValidationError
-from marshmallow.compat import OrderedDict
+from marshmallow2 import fields, Schema
+from marshmallow2.exceptions import ValidationError
+from marshmallow2.compat import OrderedDict
 
 from tests.base import *  # noqa
 

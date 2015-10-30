@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 import re
 import pytest
 
-from marshmallow.compat import PY2
-from marshmallow import validate, ValidationError
+from marshmallow2.compat import PY2
+from marshmallow2 import validate, ValidationError
 
 @pytest.mark.parametrize('valid_url', [
     'http://example.org',

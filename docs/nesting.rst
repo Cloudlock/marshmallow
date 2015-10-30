@@ -24,12 +24,12 @@ Schemas can be nested to represent relationships between objects (e.g. foreign k
             self.title = title
             self.author = author  # A User object
 
-Use a :class:`Nested <marshmallow.fields.Nested>` field to represent the relationship, passing in a nested schema class.
+Use a :class:`Nested <marshmallow2.fields.Nested>` field to represent the relationship, passing in a nested schema class.
 
 .. code-block:: python
     :emphasize-lines: 10
 
-    from marshmallow import Schema, fields, pprint
+    from marshmallow2 import Schema, fields, pprint
 
     class UserSchema(Schema):
         name = fields.String()
@@ -132,7 +132,7 @@ For example, a representation of an ``Author`` model might include the books tha
 
 .. code-block:: python
 
-    from marshmallow import pprint
+    from marshmallow2 import pprint
     from mymodels import Author, Book
 
     author = Author(name='William Faulkner')
@@ -172,7 +172,7 @@ For example, a representation of an ``Author`` model might include the books tha
 Nesting A Schema Within Itself
 ------------------------------
 
-If the object to be marshalled has a relationship to an object of the same type, you can nest the `Schema` within itself by passing ``"self"`` (with quotes) to the :class:`Nested <marshmallow.fields.Nested>` constructor.
+If the object to be marshalled has a relationship to an object of the same type, you can nest the `Schema` within itself by passing ``"self"`` (with quotes) to the :class:`Nested <marshmallow2.fields.Nested>` constructor.
 
 .. code-block:: python
     :emphasize-lines: 4,6
@@ -219,4 +219,4 @@ Next Steps
 
 - Want to create your own field type? See the :ref:`Custom Fields <custom_fields>` page.
 - Need to add schema-level validation, post-processing, or error handling behavior? See the :ref:`Extending Schemas <extending>` page.
-- For example applications using marshmallow, check out the :ref:`Examples <examples>` page.
+- For example applications using marshmallow2, check out the :ref:`Examples <examples>` page.

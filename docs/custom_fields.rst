@@ -6,20 +6,20 @@ Custom Fields
 
 There are three ways to create a custom-formatted field for a `Schema`:
 
-- Create a custom :class:`Field <marshmallow.fields.Field>` class
-- Use a :class:`Method <marshmallow.fields.Method>` field
-- Use a :class:`Function <marshmallow.fields.Function>` field
+- Create a custom :class:`Field <marshmallow2.fields.Field>` class
+- Use a :class:`Method <marshmallow2.fields.Method>` field
+- Use a :class:`Function <marshmallow2.fields.Function>` field
 
 The method you choose will depend on the manner in which you intend to reuse the field.
 
 Creating A Field Class
 ----------------------
 
-To create a custom field class, create a subclass of :class:`marshmallow.fields.Field` and implement its :meth:`_serialize <marshmallow.fields.Field._serialize>`, and/or :meth:`_deserialize <marshmallow.fields.Field._deserialize>` methods.
+To create a custom field class, create a subclass of :class:`marshmallow2.fields.Field` and implement its :meth:`_serialize <marshmallow2.fields.Field._serialize>`, and/or :meth:`_deserialize <marshmallow2.fields.Field._deserialize>` methods.
 
 .. code-block:: python
 
-    from marshmallow import fields
+    from marshmallow2 import fields
 
     class Titlecased(fields.Field):
         def _serialize(self, value, attr, obj):
@@ -36,7 +36,7 @@ To create a custom field class, create a subclass of :class:`marshmallow.fields.
 Method Fields
 -------------
 
-A :class:`Method <marshmallow.fields.Method>` field will take the value returned by a method of the Schema. The method must take an ``obj`` parameter which is the object to be serialized.
+A :class:`Method <marshmallow2.fields.Method>` field will take the value returned by a method of the Schema. The method must take an ``obj`` parameter which is the object to be serialized.
 
 .. code-block:: python
 
@@ -52,7 +52,7 @@ A :class:`Method <marshmallow.fields.Method>` field will take the value returned
 Function Fields
 ---------------
 
-A :class:`Function <marshmallow.fields.Function>` field will take the value of a function that is passed directly to it. Like a :class:`Method <marshmallow.fields.Method>` field, the function must take a single argument ``obj``.
+A :class:`Function <marshmallow2.fields.Function>` field will take the value of a function that is passed directly to it. Like a :class:`Method <marshmallow2.fields.Method>` field, the function must take a single argument ``obj``.
 
 
 .. code-block:: python
@@ -69,9 +69,9 @@ A :class:`Function <marshmallow.fields.Function>` field will take the value of a
 Adding Context to `Method` and `Function` Fields
 ------------------------------------------------
 
-A :class:`Function <marshmallow.fields.Function>` or :class:`Method <marshmallow.fields.Method>` field may need information about its environment to know how to serialize a value.
+A :class:`Function <marshmallow2.fields.Function>` or :class:`Method <marshmallow2.fields.Method>` field may need information about its environment to know how to serialize a value.
 
-In these cases, you can set the ``context`` attribute (a dictionary) of a `Schema`. :class:`Function <marshmallow.fields.Function>` and :class:`Method <marshmallow.fields.Method>` fields will have access to this dictionary.
+In these cases, you can set the ``context`` attribute (a dictionary) of a `Schema`. :class:`Function <marshmallow2.fields.Function>` and :class:`Method <marshmallow2.fields.Method>` fields will have access to this dictionary.
 
 As an example, you might want your ``UserSchema`` to output whether or not a ``User`` is the author of a ``Blog`` or whether the a certain word appears in a ``Blog's`` title.
 
@@ -108,7 +108,7 @@ At the class level, default error messages are defined as a mapping from error c
 
 .. code-block:: python
 
-    from marshmallow import fields
+    from marshmallow2 import fields
 
     class MyDate(fields.Date):
         default_error_messages = {
@@ -122,7 +122,7 @@ Error messages can also be passed to a `Field's` constructor.
 
 .. code-block:: python
 
-    from marshmallow import Schema, fields
+    from marshmallow2 import Schema, fields
 
     class UserSchema(Schema):
 
@@ -136,4 +136,4 @@ Next Steps
 ----------
 
 - Need to add schema-level validation, post-processing, or error handling behavior? See the :ref:`Extending Schemas <extending>` page.
-- For example applications using marshmallow, check out the :ref:`Examples <examples>` page.
+- For example applications using marshmallow2, check out the :ref:`Examples <examples>` page.

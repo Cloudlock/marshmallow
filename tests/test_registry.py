@@ -2,8 +2,8 @@
 
 import pytest
 
-from marshmallow import Schema, fields, class_registry
-from marshmallow.exceptions import RegistryError
+from marshmallow2 import Schema, fields, class_registry
+from marshmallow2.exceptions import RegistryError
 
 
 def test_serializer_has_class_registry():

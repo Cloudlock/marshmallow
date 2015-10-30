@@ -1,35 +1,35 @@
 .. _why:
 
-Why marshmallow?
+Why marshmallow2?
 ================
 
 The Python ecosystem has many great libraries for data formatting and schema validation.
 
-In fact, marshmallow was influenced by a number of these libraries. Marshmallow is inspired by `Django REST Framework`_, `Flask-RESTful`_, and `colander <http://docs.pylonsproject.org/projects/colander/en/latest/>`_. It borrows a number of implementation and design ideas from these libraries to create a flexible and productive solution for marshalling, unmarshalling, and validating data.
+In fact, marshmallow2 was influenced by a number of these libraries. marshmallow2 is inspired by `Django REST Framework`_, `Flask-RESTful`_, and `colander <http://docs.pylonsproject.org/projects/colander/en/latest/>`_. It borrows a number of implementation and design ideas from these libraries to create a flexible and productive solution for marshalling, unmarshalling, and validating data.
 
-Here are just a few reasons why you might use marshmallow.
+Here are just a few reasons why you might use marshmallow2.
 
 Agnostic.
 ---------
 
-Marshmallow makes no assumption about web frameworks or database layers. It will work with just about any ORM, ODM, or no ORM at all. This gives you the freedom to choose the components that fit your application's needs without having to change your data formatting code. If you wish, you can build integration layers to make marshmallow work more closely with your frameworks and libraries of choice (for examples, see `Flask-Marshmallow <https://github.com/marshmallow-code/flask-marshmallow>`_, and `Django REST Marshmallow <http://tomchristie.github.io/django-rest-marshmallow/>`_).
+marshmallow2 makes no assumption about web frameworks or database layers. It will work with just about any ORM, ODM, or no ORM at all. This gives you the freedom to choose the components that fit your application's needs without having to change your data formatting code. If you wish, you can build integration layers to make marshmallow2 work more closely with your frameworks and libraries of choice (for examples, see `Flask-marshmallow2 <https://github.com/marshmallow2-code/flask-marshmallow2>`_, and `Django REST marshmallow2 <http://tomchristie.github.io/django-rest-marshmallow2/>`_).
 
 Concise, familiar syntax.
 -------------------------
 
-If you have used `Django REST Framework`_ or  `WTForms <http://wtforms.simplecodes.com/docs/1.0.3/>`_, marshmallow's :class:`Schema` syntax will feel familiar to you. Class-level field attributes define the schema for formatting your data. Configuration is added using the :ref:`class Meta <meta_options>` paradigm. Configuration options can be overriden at application runtime by passing arguments to the `Schema <marshmallow.Schema>` constructor. The :meth:`dump <marshmallow.Schema.dump>` and :meth:`load <marshmallow.Schema.load>` methods are used for serialization and deserialization (of course!).
+If you have used `Django REST Framework`_ or  `WTForms <http://wtforms.simplecodes.com/docs/1.0.3/>`_, marshmallow2's :class:`Schema` syntax will feel familiar to you. Class-level field attributes define the schema for formatting your data. Configuration is added using the :ref:`class Meta <meta_options>` paradigm. Configuration options can be overriden at application runtime by passing arguments to the `Schema <marshmallow2.Schema>` constructor. The :meth:`dump <marshmallow2.Schema.dump>` and :meth:`load <marshmallow2.Schema.load>` methods are used for serialization and deserialization (of course!).
 
 Class-based schemas allow for code reuse and configuration.
 -----------------------------------------------------------
 
-Unlike `Flask-RESTful`_, which uses dictionaries to define output schemas, marshmallow uses classes. This allows for easy code reuse and configuration. It also allows for powerful means for configuring and extending schemas, such as adding :ref:`post-processing and error handling behavior <extending>`.
+Unlike `Flask-RESTful`_, which uses dictionaries to define output schemas, marshmallow2 uses classes. This allows for easy code reuse and configuration. It also allows for powerful means for configuring and extending schemas, such as adding :ref:`post-processing and error handling behavior <extending>`.
 
 Consistency meets flexibility.
 ------------------------------
 
-Marshmallow makes it easy to modify a schema's output at application runtime. A single :class:`Schema` can produce multiple outputs formats while keeping the individual field outputs consistent.
+marshmallow2 makes it easy to modify a schema's output at application runtime. A single :class:`Schema` can produce multiple outputs formats while keeping the individual field outputs consistent.
 
-As an example, you might have a JSON endpoint for retrieving all information about a video game's state. You then add a low-latency endpoint that only returns a minimal subset of information about game state. Both endpoints can be handled by the same `Schema <marshmallow.Schema>`.
+As an example, you might have a JSON endpoint for retrieving all information about a video game's state. You then add a low-latency endpoint that only returns a minimal subset of information about game state. Both endpoints can be handled by the same `Schema <marshmallow2.Schema>`.
 
 .. code-block:: python
 
@@ -59,9 +59,9 @@ In this example, a single schema produced three different outputs! The dynamic n
 Context-aware serialization.
 ----------------------------
 
-Marshmallow schemas can modify their output based on the context in which they are used. Field objects have access to a ``context`` dictionary that can be changed at runtime.
+marshmallow2 schemas can modify their output based on the context in which they are used. Field objects have access to a ``context`` dictionary that can be changed at runtime.
 
-Here's a simple example that shows how a `Schema <marshmallow.Schema>` can anonymize a person's name when a boolean is set on the context.
+Here's a simple example that shows how a `Schema <marshmallow2.Schema>` can anonymize a person's name when a boolean is set on the context.
 
 .. code-block:: python
 
@@ -90,7 +90,7 @@ Here's a simple example that shows how a `Schema <marshmallow.Schema>` can anony
 Advanced schema nesting.
 ------------------------
 
-Most serialization libraries provide some means for nesting schemas within each other, but they often fail to meet common use cases in clean way. Marshmallow aims to fill these gaps by adding a few nice features for :ref:`nesting schemas <nesting>`:
+Most serialization libraries provide some means for nesting schemas within each other, but they often fail to meet common use cases in clean way. marshmallow2 aims to fill these gaps by adding a few nice features for :ref:`nesting schemas <nesting>`:
 
 - You can specify which :ref:`subset of fields <specifying-nested-fields>` to include on nested schemas.
 - :ref:`Two-way nesting <two-way-nesting>`. Two different schemas can nest each other.

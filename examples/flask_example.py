@@ -3,7 +3,7 @@ import datetime
 from flask import Flask, jsonify, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-from marshmallow import Schema, fields, ValidationError, pre_load
+from marshmallow2 import Schema, fields, ValidationError, pre_load
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:////tmp/quotes.db'

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# marshmallow documentation build configuration file.
+# marshmallow2 documentation build configuration file.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -19,8 +19,8 @@ import alabaster
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('..'))
-import marshmallow
-from marshmallow.compat import OrderedDict
+import marshmallow2
+from marshmallow2.compat import OrderedDict
 
 # -- General configuration -----------------------------------------------------
 
@@ -44,7 +44,7 @@ intersphinx_mapping = {
     'python': ('http://python.readthedocs.org/en/latest/', None),
 }
 
-issues_github_path = 'marshmallow-code/marshmallow'
+issues_github_path = 'marshmallow2-code/marshmallow2'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -55,12 +55,12 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'marshmallow'
+project = u'marshmallow2'
 copyright = ' {0:%Y} <a href="http://stevenloria.com">Steven Loria</a>'.format(
     dt.datetime.utcnow()
 )
 
-version = release = marshmallow.__version__
+version = release = marshmallow2.__version__
 
 exclude_patterns = ['_build']
 
@@ -73,11 +73,11 @@ templates_path = ['_templates']
 html_show_sourcelink = False
 
 html_theme_options = {
-    'logo': 'marshmallow-logo.png',
+    'logo': 'marshmallow2-logo.png',
     'description': 'Object serialization and deserialization, lightweight and fluffy.',
     'description_font_style': 'italic',
-    'github_user': 'marshmallow-code',
-    'github_repo': 'marshmallow',
+    'github_user': 'marshmallow2-code',
+    'github_repo': 'marshmallow2',
     'github_banner': True,
     'gratipay_user': 'sloria',
     'code_font_size': '0.8em',
@@ -85,9 +85,9 @@ html_theme_options = {
     'warn_border': '#EEE',
     # Used to populate the useful-links.html template
     'extra_nav_links': OrderedDict([
-        ('marshmallow @ PyPI', 'http://pypi.python.org/pypi/marshmallow'),
-        ('marshmallow @ GitHub', 'http://github.com/marshmallow-code/marshmallow'),
-        ('Issue Tracker', 'http://github.com/marshmallow-code/marshmallow/issues'),
+        ('marshmallow2 @ PyPI', 'http://pypi.python.org/pypi/marshmallow2'),
+        ('marshmallow2 @ GitHub', 'http://github.com/marshmallow2-code/marshmallow2'),
+        ('Issue Tracker', 'http://github.com/marshmallow2-code/marshmallow2/issues'),
     ])
 }
 

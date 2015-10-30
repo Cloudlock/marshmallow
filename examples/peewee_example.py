@@ -3,7 +3,7 @@ from functools import wraps
 
 from flask import Flask, request, g, jsonify
 import peewee as pw
-from marshmallow import Schema, fields, validate, pre_load, post_dump
+from marshmallow2 import Schema, fields, validate, pre_load, post_dump
 
 app = Flask(__name__)
 db = pw.SqliteDatabase('/tmp/todo.db')

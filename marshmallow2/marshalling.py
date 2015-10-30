@@ -10,9 +10,9 @@ and from primitive types.
 
 from __future__ import unicode_literals
 
-from marshmallow.utils import missing
-from marshmallow.compat import text_type, iteritems
-from marshmallow.exceptions import (
+from marshmallow2.utils import missing
+from marshmallow2.compat import text_type, iteritems
+from marshmallow2.exceptions import (
     ValidationError,
 )
 

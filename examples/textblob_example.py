@@ -1,6 +1,6 @@
 from bottle import route, request, run
 from textblob import TextBlob
-from marshmallow import Schema, fields
+from marshmallow2 import Schema, fields
 
 class BlobSchema(Schema):
     polarity = fields.Float()

@@ -33,7 +33,7 @@ def flake():
 def clean():
     run("rm -rf build")
     run("rm -rf dist")
-    run("rm -rf marshmallow.egg-info")
+    run("rm -rf marshmallow2.egg-info")
     clean_docs()
     print("Cleaned up.")
 
@@ -68,7 +68,7 @@ def watch_docs():
         print('    pip install sphinx-autobuild')
         sys.exit(1)
     run('sphinx-autobuild {0} {1} --watch {2}'.format(
-        docs_dir, build_dir, 'marshmallow'), echo=True, pty=True)
+        docs_dir, build_dir, 'marshmallow2'), echo=True, pty=True)
 
 @task
 def readme(browse=False):

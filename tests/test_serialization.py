@@ -6,9 +6,9 @@ import decimal
 
 import pytest
 
-from marshmallow import Schema, fields, utils
-from marshmallow.exceptions import ValidationError
-from marshmallow.compat import basestring, OrderedDict
+from marshmallow2 import Schema, fields, utils
+from marshmallow2.exceptions import ValidationError
+from marshmallow2.compat import basestring, OrderedDict
 
 from tests.base import User, DummyModel, ALL_FIELDS
 
@@ -615,7 +615,7 @@ class TestFieldSerialization:
         with pytest.raises(ValueError) as excinfo:
             fields.List(ASchema)
         expected_msg = ('The type of the list elements must be a subclass '
-                'of marshmallow.base.FieldABC')
+                'of marshmallow2.base.FieldABC')
         assert expected_msg in str(excinfo)
 
     def test_serialize_does_not_apply_validators(self, user):

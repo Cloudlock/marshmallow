@@ -5,9 +5,9 @@ import decimal
 
 import pytest
 
-from marshmallow import fields, utils, Schema, validate
-from marshmallow.exceptions import ValidationError
-from marshmallow.compat import basestring
+from marshmallow2 import fields, utils, Schema, validate
+from marshmallow2.exceptions import ValidationError
+from marshmallow2.compat import basestring
 
 from tests.base import (
     assert_almost_equal,
@@ -30,7 +30,7 @@ class TestDeserializingNone:
             field = FieldClass(allow_none=True)
         field.deserialize(None) is None
 
-    # https://github.com/marshmallow-code/marshmallow/issues/111
+    # https://github.com/marshmallow2-code/marshmallow2/issues/111
     @pytest.mark.parametrize('FieldClass', ALL_FIELDS)
     def test_fields_dont_allow_none_by_default(self, FieldClass):
         # by default, allow_none=False
@@ -237,7 +237,7 @@ class TestFieldDeserialization:
         assert field.deserialize('foo') == 'foo'
         assert field.deserialize(b'foo') == 'foo'
 
-        # https://github.com/marshmallow-code/marshmallow/issues/231
+        # https://github.com/marshmallow2-code/marshmallow2/issues/231
         with pytest.raises(ValidationError) as excinfo:
             field.deserialize(42)
         assert excinfo.value.args[0] == 'Not a valid string.'
@@ -1124,7 +1124,7 @@ class TestValidation:
 
         assert 'Invalid value.' in str(excinfo)
 
-    # Regression test for https://github.com/marshmallow-code/marshmallow/issues/269
+    # Regression test for https://github.com/marshmallow2-code/marshmallow2/issues/269
     def test_nested_data_is_stored_when_validation_fails(self):
         class SchemaA(Schema):
             x = fields.Integer()
@@ -1169,7 +1169,7 @@ def test_required_message_can_be_changed(message):
     assert expected == errs['age']
     assert data == {}
 
-# Regression test for https://github.com/marshmallow-code/marshmallow/issues/261
+# Regression test for https://github.com/marshmallow2-code/marshmallow2/issues/261
 def test_deserialize_doesnt_raise_exception_if_strict_is_false_and_input_type_is_incorrect():
     class MySchema(Schema):
         foo = fields.Field()

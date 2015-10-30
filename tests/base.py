@@ -7,9 +7,9 @@ import simplejson
 
 import pytz
 
-from marshmallow import Schema, fields, post_load, validate
-from marshmallow.compat import text_type
-from marshmallow.exceptions import ValidationError
+from marshmallow2 import Schema, fields, post_load, validate
+from marshmallow2.compat import text_type
+from marshmallow2.exceptions import ValidationError
 
 central = pytz.timezone("US/Central")
 

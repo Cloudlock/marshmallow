@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from marshmallow import (
+from marshmallow2 import (
     Schema,
     fields,
     pre_dump,
@@ -210,7 +210,7 @@ def test_decorated_processor_inheritance():
         'overridden': 'overridden'
     }
 
-# https://github.com/marshmallow-code/marshmallow/issues/229#issuecomment-138949436
+# https://github.com/marshmallow2-code/marshmallow2/issues/229#issuecomment-138949436
 def test_pre_dump_is_invoked_before_implicit_field_generation():
     class Foo(Schema):
         field = fields.Integer()
@@ -381,7 +381,7 @@ class TestValidatesSchemaDecorator:
                 if isinstance(original_data, dict) and isinstance(original_data['foo'], str):
                     raise ValidationError('foo cannot be a string')
 
-            # See https://github.com/marshmallow-code/marshmallow/issues/127
+            # See https://github.com/marshmallow2-code/marshmallow2/issues/127
             @validates_schema(pass_many=True, pass_original=True)
             def check_unknown_fields(self, data, original_data, many):
                 def check(datum):
@@ -411,7 +411,7 @@ class TestValidatesSchemaDecorator:
         assert len(errors['_schema']) == 1
         assert errors['_schema'][0] == {'code': 'invalid_field'}
 
-    # https://github.com/marshmallow-code/marshmallow/issues/273
+    # https://github.com/marshmallow2-code/marshmallow2/issues/273
     def test_allow_arbitrary_field_names_in_error(self):
 
         class MySchema(Schema):

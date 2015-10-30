@@ -1,5 +1,5 @@
 .. _examples:
-.. module:: marshmallow
+.. module:: marshmallow2
 
 ********
 Examples
@@ -64,14 +64,14 @@ Then send a POST request with some text.
 Quotes API (Flask + SQLAlchemy)
 ================================
 
-Below is a full example of a REST API for a quotes app using `Flask <http://flask.pocoo.org/>`_  and `SQLAlchemy <http://www.sqlalchemy.org/>`_  with marshmallow. It demonstrates a number of features, including:
+Below is a full example of a REST API for a quotes app using `Flask <http://flask.pocoo.org/>`_  and `SQLAlchemy <http://www.sqlalchemy.org/>`_  with marshmallow2. It demonstrates a number of features, including:
 
     - Validation and deserialization using :meth:`Schema.load`.
     - Custom validation
     - Nesting fields
     - Using ``dump_only=True`` to specify read-only fields
     - Output filtering using the ``only`` parameter
-    - Using `@pre_load <marshmallow.decorators.pre_load>` to preprocess input data.
+    - Using `@pre_load <marshmallow2.decorators.pre_load>` to preprocess input data.
 
 .. literalinclude:: ../examples/flask_example.py
     :language: python
@@ -156,7 +156,7 @@ ToDo API (Flask + Peewee)
 
 This example uses Flask and the `Peewee <http://peewee.readthedocs.org/en/latest/index.html>`_ ORM to create a basic Todo application.
 
-Here, we use `Schema.load <marshmallow.Schema.load>` to validate and deserialize input data to model data. Also notice how `pre_load <marshmallow.decorators.pre_load>` is used to clean input data and `post_load <marshmallow.decorators.post_load>` is used to add an envelope to response data.
+Here, we use `Schema.load <marshmallow2.Schema.load>` to validate and deserialize input data to model data. Also notice how `pre_load <marshmallow2.decorators.pre_load>` is used to clean input data and `post_load <marshmallow2.decorators.post_load>` is used to add an envelope to response data.
 
 .. literalinclude:: ../examples/peewee_example.py
     :language: python
@@ -171,7 +171,7 @@ After registering a user and creating some todo items in the database, here is a
     {
         "todos": [
             {
-                "content": "Install marshmallow",
+                "content": "Install marshmallow2",
                 "done": false,
                 "id": 1,
                 "posted_on": "2015-05-05T01:51:12.832232+00:00",

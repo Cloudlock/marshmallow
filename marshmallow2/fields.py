@@ -10,11 +10,11 @@ import warnings
 import decimal
 from operator import attrgetter
 
-from marshmallow import validate, utils, class_registry
-from marshmallow.base import FieldABC, SchemaABC
-from marshmallow.utils import missing as missing_
-from marshmallow.compat import text_type, basestring
-from marshmallow.exceptions import ValidationError
+from marshmallow2 import validate, utils, class_registry
+from marshmallow2.base import FieldABC, SchemaABC
+from marshmallow2.utils import missing as missing_
+from marshmallow2.compat import text_type, basestring
+from marshmallow2.exceptions import ValidationError
 
 __all__ = [
     'Field',
@@ -114,7 +114,7 @@ class Field(FieldABC):
 
     #: Default error messages for various kinds of errors. The keys in this dictionary
     #: are passed to `Field.fail`. The values are error messages passed to
-    #: :exc:`marshmallow.ValidationError`.
+    #: :exc:`marshmallow2.ValidationError`.
     default_error_messages = {
         'required': 'Missing data for required field.',
         'type': 'Invalid input type.', # used by Unmarshaller
@@ -267,7 +267,7 @@ class Field(FieldABC):
 
     def _add_to_schema(self, field_name, schema):
         """Update field with values from its parent schema. Called by
-            :meth:`__set_field_attrs <marshmallow.Schema.__set_field_attrs>`.
+            :meth:`__set_field_attrs <marshmallow2.Schema.__set_field_attrs>`.
 
         :param str field_name: Field name set in schema.
         :param Schema schema: Parent schema.
@@ -329,7 +329,7 @@ class Raw(Field):
     pass
 
 class Nested(Field):
-    """Allows you to nest a :class:`Schema <marshmallow.Schema>`
+    """Allows you to nest a :class:`Schema <marshmallow2.Schema>`
     inside a field.
 
     Examples: ::
@@ -497,13 +497,13 @@ class List(Field):
             if not issubclass(cls_or_instance, FieldABC):
                 raise ValueError('The type of the list elements '
                                            'must be a subclass of '
-                                           'marshmallow.base.FieldABC')
+                                           'marshmallow2.base.FieldABC')
             self.container = cls_or_instance()
         else:
             if not isinstance(cls_or_instance, FieldABC):
                 raise ValueError('The instances of the list '
                                            'elements must be of type '
-                                           'marshmallow.base.FieldABC')
+                                           'marshmallow2.base.FieldABC')
             self.container = cls_or_instance
 
     def get_value(self, attr, obj, accessor=None):
@@ -782,8 +782,8 @@ class DateTime(Field):
     Example: ``'2014-12-22T03:12:58.019077+00:00'``
 
     Timezone-naive `datetime` objects are converted to
-    UTC (+00:00) by :meth:`Schema.dump <marshmallow.Schema.dump>`.
-    :meth:`Schema.load <marshmallow.Schema.load>` returns `datetime`
+    UTC (+00:00) by :meth:`Schema.dump <marshmallow2.Schema.dump>`.
+    :meth:`Schema.load <marshmallow2.Schema.load>` returns `datetime`
     objects that are timezone-aware.
 
     :param str format: Either ``"rfc"`` (for RFC822), ``"iso"`` (for ISO8601),
@@ -869,7 +869,7 @@ class LocalDateTime(DateTime):
 
         ex. ``"Sun, 10 Nov 2013 08:23:45 -0600"``
 
-    Takes the same arguments as :class:`DateTime <marshmallow.fields.DateTime>`.
+    Takes the same arguments as :class:`DateTime <marshmallow2.fields.DateTime>`.
     """
     localtime = True
 
