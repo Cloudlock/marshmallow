@@ -91,9 +91,24 @@ Artifactory deployment:
         python setup.py bdist_wheel --universal
     
     
-    
+- Option2 (Recommended): Upload using Jenkin job
 
+    Upload using the job https://production.jenkins.cloudlockng.com/job/create_custom_package_python3/
+ 
+    .. list-table:: Sample configuration
+       :widths: 25 25 25 25 25
+       :header-rows: 1
 
+       * - repo
+         - commit
+         - path_to_setup
+         - package_to_build
+         - platform_python3_version
+       * - marshmallow
+         - 3.7.2
+         - .
+         - dev
+         - 3.7
 
 
 
