@@ -82,7 +82,7 @@ MIT licensed. See the bundled `LICENSE <https://github.com/marshmallow-code/mars
 
 Artifactory deployment:
 ======================
-- Option1: Upload wheel file manually 
+- **Option1**: Upload wheel file manually 
     wheel files can be generated with following code. Note that version has to be updated in ```marshmallow/__init__.py```
     
     .. code-block:: python
@@ -91,7 +91,7 @@ Artifactory deployment:
         python setup.py bdist_wheel --universal
     
     
-- Option2 (Recommended): Upload using Jenkin job
+- **Option2 (Recommended)**: Upload using Jenkin job
 
     Upload using the job https://production.jenkins.cloudlockng.com/job/create_custom_package_python3/
  
