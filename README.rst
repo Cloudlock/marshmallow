@@ -77,3 +77,27 @@ License
 =======
 
 MIT licensed. See the bundled `LICENSE <https://github.com/marshmallow-code/marshmallow/blob/pypi/LICENSE>`_ file for more details.
+
+
+
+Artifactory deployment:
+======================
+- Option1: Upload wheel file manually 
+    wheel files can be generated with following code. Note that version has to be updated in ```marshmallow/__init__.py```
+    
+    .. code-block:: python
+
+        pip install wheel
+        python setup.py bdist_wheel --universal
+    
+    
+    
+
+
+
+
+
+
+
+
+
